@@ -48,15 +48,14 @@ var locationButton = $('#send-location')
 
 locationButton.on('click',function (e) {
   if (!navigator.geolocation) {
-    return alert('geolocation not supported by your browswer')
+    return alert('geolocation not supported by your browser')
   }
 
   navigator.geolocation.getCurrentPosition(function(position) {
     console.log('sent');
     socket.emit('createLocationMessage', {
       latitude: position.coords.latitude,
-      longitude: position.coords.longitude
-    })
+      longitude: position.coords.longitude})
   }, function() {
     alert('Unable to fetch location');
   });
